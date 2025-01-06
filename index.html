@@ -101,28 +101,29 @@
     <footer>
         <p>&copy; 2025 WONTRUG AI | All rights reserved.</p>
     </footer>
-    <script>
-        async function sendMessage() {
-            const input = document.getElementById('user-input').value;
-            const messagesDiv = document.getElementById('messages');
+<script>
+    function sendMessage() {
+        const input = document.getElementById('user-input').value.trim(); // Trim spaces
+        const messagesDiv = document.getElementById('messages');
 
-            if (!input) return;
+        if (!input) return; // Do nothing if the input is empty
 
-            // Display user message
-            const userMessage = document.createElement('p');
-            userMessage.textContent = `You: ${input}`;
-            messagesDiv.appendChild(userMessage);
+        // Display user message
+        const userMessage = document.createElement('p');
+        userMessage.textContent = `You: ${input}`;
+        messagesDiv.appendChild(userMessage);
 
-            // Simulate WONTRUG AI response
-            const responseMessage = document.createElement('p');
-            responseMessage.textContent = `WONTRUG AI: ${generateResponse(input)}`;
-            messagesDiv.appendChild(responseMessage);
+        // Generate and display WONTRUG AI response
+        const responseMessage = document.createElement('p');
+        responseMessage.textContent = `WONTRUG AI: ${generateResponse()}`;
+        messagesDiv.appendChild(responseMessage);
 
-            document.getElementById('user-input').value = ''; // Clear input
-        }
+        document.getElementById('user-input').value = ''; // Clear input
+        messagesDiv.scrollTop = messagesDiv.scrollHeight; // Auto-scroll to the latest message
+    }
 
-        function generateResponse(input) {
-            const phrases = [
+    function generateResponse() {
+        const phrases = [
                 "Deadass, I won’t rug.",
                 "No cap, I’m solid. Won’t rug.",
                 "On my soul, I won’t rug.",
@@ -148,9 +149,8 @@
                 "May god murder my children if i rug."
                 "Word to my mother i wont rug."
                 "On everybody soul i aint finna rug."
-            ];
-            return phrases[Math.floor(Math.random() * phrases.length)];
-        }
-    </script>
-</body>
-</html>
+        ];
+        return phrases[Math.floor(Math.random() * phrases.length)];
+    }
+</script>
+
