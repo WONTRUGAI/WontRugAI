@@ -61,6 +61,10 @@
         .messages {
             margin-top: 20px;
             text-align: left;
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
         }
         footer {
             margin-top: 50px;
@@ -93,7 +97,7 @@
             <h2>Chat with WONTRUG AI</h2>
             <div class="chatbox">
                 <div id="messages" class="messages"></div>
-                <textarea id="user-input" placeholder="Ask me if im gonna rug..."></textarea>
+                <textarea id="user-input" placeholder="Ask me anything..."></textarea>
                 <button onclick="sendMessage()">Send</button>
             </div>
         </section>
@@ -101,29 +105,36 @@
     <footer>
         <p>&copy; 2025 WONTRUG AI | All rights reserved.</p>
     </footer>
-<script>
-    function sendMessage() {
-        const input = document.getElementById('user-input').value.trim(); // Trim spaces
-        const messagesDiv = document.getElementById('messages');
+    <script>
+        function sendMessage() {
+            console.log("sendMessage function triggered"); // Debugging
 
-        if (!input) return; // Do nothing if the input is empty
+            const input = document.getElementById('user-input').value.trim();
+            const messagesDiv = document.getElementById('messages');
 
-        // Display user message
-        const userMessage = document.createElement('p');
-        userMessage.textContent = `You: ${input}`;
-        messagesDiv.appendChild(userMessage);
+            if (!input) {
+                console.log("No input provided"); // Debugging
+                return;
+            }
 
-        // Generate and display WONTRUG AI response
-        const responseMessage = document.createElement('p');
-        responseMessage.textContent = `WONTRUG AI: ${generateResponse()}`;
-        messagesDiv.appendChild(responseMessage);
+            // Display user message
+            const userMessage = document.createElement('p');
+            userMessage.textContent = `You: ${input}`;
+            messagesDiv.appendChild(userMessage);
 
-        document.getElementById('user-input').value = ''; // Clear input
-        messagesDiv.scrollTop = messagesDiv.scrollHeight; // Auto-scroll to the latest message
-    }
+            // Generate and display AI response
+            const responseMessage = document.createElement('p');
+            responseMessage.textContent = `WONTRUG AI: ${generateResponse()}`;
+            messagesDiv.appendChild(responseMessage);
 
-    function generateResponse() {
-        const phrases = [
+            document.getElementById('user-input').value = ''; // Clear input
+            messagesDiv.scrollTop = messagesDiv.scrollHeight; // Auto-scroll
+        }
+
+        function generateResponse() {
+            console.log("generateResponse function triggered"); // Debugging
+
+            const phrases = [
                 "Deadass, I won’t rug.",
                 "No cap, I’m solid. Won’t rug.",
                 "On my soul, I won’t rug.",
@@ -143,14 +154,18 @@
                 "Ion do no fakes, I’m not rugging.",
                 "Cross my heart, I’ll never rug y’all.",
                 "Whole time, I’m true to this—no rug.",
-                "Believe that, I’m ten toes down. Won’t rug."
-                "On my mama life i aint finna rug."
-                "On my nana soul i wont rug."
-                "May god murder my children if i rug."
-                "Word to my mother i wont rug."
-                "On everybody soul i aint finna rug."
-        ];
-        return phrases[Math.floor(Math.random() * phrases.length)];
-    }
-</script>
+                "Believe that, I’m ten toes down. Won’t rug.",
+                "On my mama life I ain’t finna rug.",
+                "On my nana soul I won’t rug.",
+                "May God murder my children if I rug.",
+                "Word to my mother I won’t rug.",
+                "On everybody soul I ain’t finna rug."
+            ];
 
+            const response = phrases[Math.floor(Math.random() * phrases.length)];
+            console.log("Generated response:", response); // Debugging
+            return response;
+        }
+    </script>
+</body>
+</html>
